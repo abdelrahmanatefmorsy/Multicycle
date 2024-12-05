@@ -74,16 +74,20 @@ class MUX:
         if outline_color:
             canvas.itemconfig(self.egg, outline=outline_color)
 window = tk.Tk()
-window.title("Full Screen Canvas")
-
-window.attributes('-fullscreen', True)
-
-window.bind("<Escape>", lambda e: window.attributes('-fullscreen', False))
-
+window.title("MIPS Diagram")
+window.geometry("1200x800")  # Window size
 canvas = tk.Canvas(window, bg="white")
-canvas.pack(fill=tk.BOTH, expand=True) 
-import tkinter as tk
-
-rect1 = Rectangle([50,100],[200,300])
-
+canvas.pack(fill=tk.BOTH, expand=True)
+x = -190
+y = 0
+pc = Rectangle([x+200,300],[x+300,430])
+l1 = Line([x+300,350],[x+380,350])
+IorD = MUX([x+380,330],[x+400,410])
+l2 = Line([x+402,360],[x+480,360])
+memory = Rectangle([x+481,300],[x+581,540])
+l3 = Line([x+582,360],[x+670,360])
+pc = Rectangle([x+670,300],[x+770,430])
+pc = Rectangle([x+670,460],[x+770,590])
+l4 = Line([x+626,360],[x+626,500])
+l5 = Line([x+626,500],[x+670,500])
 window.mainloop()
