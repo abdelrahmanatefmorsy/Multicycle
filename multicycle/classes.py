@@ -2,29 +2,22 @@ from functools import partial
 import tkinter as tk
 
 class Line:
-    def __init__(self, canvas, pos1, pos2, color="black", width=2, command=None, command_arg=None):
-        # Store the line ID and canvas reference
+    count = 0
+    Lines_lst = []
+    def __init__(self, canvas, pos1, pos2, color="black", width=2):
+        self.id = Line.count
+        Line.count+=1
+        Line.Lines_lst.append(self)
         self.canvas = canvas
-        self.command = command  # Store the function to call on click
-        self.command_arg = command_arg  # Argument to pass to the command
-
-        # Create the line on the canvas
         self.line = canvas.create_line(
             pos1[0], pos1[1], pos2[0], pos2[1],
             fill=color, width=width
         )
-        
-        # Bind the click event to the line
-        canvas.tag_bind(self.line, "<Button-1>", self.on_click)
+        # Bind the line to an event
+        self.canvas.tag_bind(self.line, "<Button-1>", self.on_click)
 
     def on_click(self, event):
-        """Handle the line click event."""
-        if self.command:  # If a command function is provided, call it with the argument
-            self.command(self.command_arg)
-
-# Example function that takes an integer parameter
-def on_line_click(arg):
-    print(f"Line clicked with argument: {arg}")
+        print(self.id)
 
     
     def make_active(self):
@@ -32,9 +25,12 @@ def on_line_click(arg):
         current_color = self.canvas.itemcget(self.line, "fill")
         
         # Toggle the color
-        new_color = "#44f85c" if current_color == "black" else "black"
+        new_color = "#44f85c"
         self.canvas.itemconfig(self.line, fill=new_color)  
 
+# Example function that takes an integer parameter
+def on_line_click(arg):
+        print(f"Line clicked with argument: {arg}")
 class Rectangle:
     def __init__(self, canvas, pos1, pos2, text="", bg_color="white", outline_color="black"):
         self.rectangle = canvas.create_rectangle(

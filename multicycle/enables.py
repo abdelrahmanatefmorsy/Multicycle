@@ -22,8 +22,7 @@ canvas_width = 1600
 canvas_height = 900
 draw_grid(canvas, canvas_width, canvas_height, grid_size=20)
 x_offset = 50
-y_offset =100 
-
+y_offset =120 
 # PC (Program Counter)
 pc = Rectangle(canvas, [x_offset + 50, y_offset + 100], [x_offset + 150, y_offset + 200], text="PC")
 Fetch.append(Line(canvas, [x_offset + 150, y_offset + 150], [x_offset + 200, y_offset + 150]))
@@ -72,15 +71,40 @@ Line(canvas, [x_offset + 670, y_offset + 150], [x_offset + 670, y_offset + 270],
 Line(canvas, [x_offset + 670, y_offset + 270], [x_offset + 687, y_offset + 270],color="red")
 
 register_file = Rectangle(canvas, [x_offset + 750, y_offset + 100], [x_offset + 850, y_offset + 350], text="Register\nFile")
+Line(canvas, [x_offset + 850, y_offset + 150], [x_offset + 900, y_offset + 150])
+A = Rectangle(canvas, [x_offset + 900, y_offset + 140], [x_offset + 950, y_offset + 160], text="A",bg_color="#ffe6cc", outline_color="#e9cc83")
+Line(canvas, [x_offset + 850, y_offset + 300], [x_offset + 900, y_offset + 300])
+B = Rectangle(canvas, [x_offset + 900, y_offset + 290], [x_offset + 950, y_offset + 310], text="B",bg_color="#ffe6cc", outline_color="#e9cc83")
+Line(canvas, [x_offset + 950, y_offset + 150], [x_offset + 970, y_offset + 150])
+MUX(canvas, center=[x_offset + 970, y_offset + 150], radius=3, text="",fill_color="black",outline_color="black")
+Line(canvas, [x_offset + 950, y_offset + 300], [x_offset + 970, y_offset + 300])
+MUX(canvas, center=[x_offset + 970, y_offset + 300], radius=3, text="",fill_color="black",outline_color="black")
+Line(canvas, [x_offset + 973, y_offset + 300], [x_offset + 990, y_offset + 300])
+MUX(canvas, center=[x_offset + 990, y_offset + 300], radius=3, text="",fill_color="black",outline_color="black")
+Line(canvas, [x_offset + 993, y_offset + 300], [x_offset + 1050, y_offset + 300])
+
+MUX(canvas, center=[x_offset + 1050, y_offset + 310], radius=30, text="ALU \nSrc B")
+MUX(canvas, center=[x_offset + 990, y_offset + 285], radius=8, text="4")
+Line(canvas, [x_offset + 1000, y_offset + 285], [x_offset + 1038, y_offset + 285])
+Line(canvas, [x_offset + 973, y_offset + 150], [x_offset + 990, y_offset + 150])
+MUX(canvas, center=[x_offset + 990, y_offset + 150], radius=3, text="",fill_color="black",outline_color="black")
+Line(canvas, [x_offset + 993, y_offset + 150], [x_offset + 1050, y_offset + 150])
+MUX(canvas, center=[x_offset + 1050, y_offset + 140], radius=30, text="ALU \nSrc A")
+Line(canvas, [x_offset + 1080, y_offset + 140], [x_offset + 1100, y_offset + 140])
+Line(canvas, [x_offset + 1080, y_offset + 310], [x_offset + 1100, y_offset + 310])
+
 
 # # ALU (كمثلث)
-# Line(canvas, [x_offset + 750, y_offset + 150], [x_offset + 850, y_offset + 150])
-# alu_points = [
-#     [x_offset + 850, y_offset + 100],  # النقطة العلوية
-#     [x_offset + 950, y_offset + 150],  # النقطة اليمنى
-#     [x_offset + 850, y_offset + 200],  # النقطة السفلية
-# ]
-# alu = ALU(canvas, alu_points, text="ALU")
+alu_points = [
+    [x_offset + 1100, y_offset + 100],  # النقطة العلوية
+    [x_offset + 1250, y_offset + 230],  # النقطة اليمنى
+    [x_offset + 1100, y_offset + 320],  # النقطة السفلية
+]
+alu = ALU(canvas, alu_points, text="ALU")
+Line(canvas, [x_offset + 1200, y_offset + 260], [x_offset + 1200, y_offset + 320])
+Line(canvas, [x_offset + 1200, y_offset +190], [x_offset + 1200, y_offset + 120])
+Rectangle(canvas, [x_offset + 1180, y_offset + 100], [x_offset + 1220, y_offset + 120], text="Z",bg_color="white", outline_color="white")
+Rectangle(canvas, [x_offset + 1180, y_offset + 320], [x_offset + 1220, y_offset + 340], text="ALU OP",bg_color="white", outline_color="white")
 
 # # ALU Control
 # alu_control = Rectangle(canvas, [x_offset + 850, y_offset + 250], [x_offset + 950, y_offset + 350], text="ALU Control")
@@ -96,37 +120,4 @@ register_file = Rectangle(canvas, [x_offset + 750, y_offset + 100], [x_offset + 
 # lst[0].make_active()
 # two_sl = Rectangle(canvas, [x_offset + 600, y_offset + 400], [x_offset + 700, y_offset + 450], text="2SL")
 # Line(canvas, [x_offset + 700, y_offset + 425], [x_offset + 850, y_offset + 300])
-
-# تشغيل النافذة
-from classes import *
-import re
-s = "add  $t0 , $t1 , $t2"
-Registers = [
-    "$zero",
-    "$v0", "$v1", 
-    "$a0", "$a1", "$a2", "$a3",
-    "$t0", "$t1", "$t2", "$t3", "$t4", "$t5", "$t6", "$t7",
-    "$s0", "$s1", "$s2", "$s3", "$s4", "$s5", "$s6", "$s7",
-    "$t8", "$t9"
-]
-# def r_type(instruction):
-#     if(len(instruction) != 4):
-#         print("invalid instruction")
-#     if(instruction[0] in ["sll","srl"]):
-#         pass
-#     else:
-#         if (instruction[1] in Registers and instruction[2] in Registers and instruction[3] in Registers):
-#             for j in Fetch:
-#                 j.make_active()
-#         else:
-#             print(instruction[1:])
-    
-
-
-# code = [(["add,sub,and,or,sll,srl", lambda instruction: r_type(instruction)])]
-# lst = re.split(r'[ ,]+', s)
-# for i in code:
-#     if lst[0] in i[0]:
-#         i[1](lst)
-
 window.mainloop()
