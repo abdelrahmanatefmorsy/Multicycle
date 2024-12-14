@@ -45,17 +45,20 @@ class Rectangle:
 
 # تعريف الـ Multiplexer (MUX) كدائرة
 class MUX:
-    def __init__(self, canvas, center, radius, text="", fill_color="white", outline_color="black"):
+    def __init__(self, canvas, center, radius, text="", fill_color="white", outline_color="black",radz = 8):
         x, y = center
+        # تعديل لعمل شكل بيضاوي بدل دائرة
+        radius_x = radius  # العرض الأفقي (يمكنك تعديله)
+        radius_y = radius  + radz # الارتفاع الرأسي (يمكنك تعديله)
+        
         self.mux = canvas.create_oval(
-            x - radius, y - radius, x + radius, y + radius,
+            x - radius_x, y - radius_y, x + radius_x, y + radius_y,
             fill=fill_color, outline=outline_color, width=2
         )
         if text:
             canvas.create_text(
                 x, y, text=text, font=("Arial", 10)
             )
-
 # تعريف وحدة ALU كمثلث
 class ALU:
     def __init__(self, canvas, points, text="", fill_color="white", outline_color="black"):
@@ -69,6 +72,24 @@ class ALU:
             canvas.create_text(
                 x_center, y_center, text=text, font=("Arial", 10)
             )
+class ANDGate:
+    def __init__(self, canvas, x, y):
+        self.canvas = canvas
+        self.x = x
+        self.y = y
+        self.draw_gate()
+
+    def draw_gate(self):
+        self.canvas.create_rectangle(
+            self.x, self.y, self.x + 100, self.y + 100,
+            outline="black", width=2
+        )
+
+        self.canvas.create_arc(
+            self.x + 50, self.y, self.x + 150, self.y + 100,
+            start=270, extent=180, outline="black", width=2, style=tk.ARC
+        )
+        self.canvas.create_text(self.x + 40, self.y + 50, text="AND", font=("Arial", 10))
 def on_line_click():
     print("Line clicked!")
 Fetch = []
