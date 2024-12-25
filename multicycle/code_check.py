@@ -9,12 +9,13 @@ instructions = ["add","sub","or","and","sll","srl","addi","subi","ori","andi","j
 def R_typeOr(instruction):
     print("hello")
     if len(instruction) != 4:
-        print("Error: Incorrect instruction format!")  # Add error message
+        messagebox.showerror("Error", "Instruction  Not Found")
+  # Add error message
         return
     
     for i in range(1, len(instruction)):
         if instruction[i] not in Registers:
-            print("Error: Invalid register!")
+            messagebox.showerror("Error", "Instruction  Not Found")
             return
     
     actives = []
@@ -38,15 +39,17 @@ def R_typeOr(instruction):
 def I_typeOr(instruction):
     print("hello")
     if len(instruction) != 4:
-        print("Error: Incorrect instruction format!")  # Add error message
+        messagebox.showerror("Error", "Instruction  Not Found")
+ # Add error message
         return
     
     for i in range(1, len(instruction) - 1):
         if instruction[i] not in Registers:
-            print("Error: Invalid register!")
+            messagebox.showerror("Error", "Instruction  Not Found")
+
             return
     if(instruction[-1].isdecimal()==False):
-            print("Error: Invalid register!")
+            messagebox.showerror("Error", "Instruction  Not Found")
             return
     actives = []
     actives.append(fetch)
@@ -64,16 +67,43 @@ def I_typeOr(instruction):
     window.configure(bg="white") 
     canvas = tk.Canvas(window, bg="white")
     Multi_cycle(canvas, window,actives)
-def conditionsOr(instructions):
-    pass
+def conditionsOr(instruction):
+    print("hello")
+    if len(instruction) != 4:
+        messagebox.showerror("Error", "Instruction  Not Found")
+  # Add error message
+        return
+    
+    for i in range(1, len(instruction) - 1):
+        if instruction[i] not in Registers:
+            messagebox.showerror("Error", "Instruction  Not Found")
+
+            return
+    actives = []
+    actives.append(fetch)
+    actives.append(decode)
+    actives.append(BEQ)
+    print("Instruction:", instruction)
+    if(len(Line.Lines_lst)):
+        messagebox.showerror("Error", "There is an already cycle you do close it and try again")
+        print("invalid")
+        return
+    window = tk.Toplevel(globalVar.TKROOT)
+    window.title("Multi-Cycle Microprocessor Diagram")
+    window.geometry("1600x900")  # Window size
+    window.configure(bg="white") 
+    canvas = tk.Canvas(window, bg="white")
+    Multi_cycle(canvas, window,actives)
 def jumbOr(instruction):
     if len(instruction) != 2:
-        print("Error: Incorrect instruction format!")  # Add error message
+        messagebox.showerror("Error", "Instruction  Not Found")
+  # Add error message
         return
 
     if(instruction[-1].isdecimal()==False):
-                print("Error: Invalid register!")
-                return
+        messagebox.showerror("Error", "Instruction  Not Found")
+
+        return
     actives = []
     actives.append(fetch)
     actives.append(decode)
@@ -91,7 +121,8 @@ def jumbOr(instruction):
     Multi_cycle(canvas, window,actives)
 def jumbalOr(instruction):
     if len(instruction) != 2:
-        print("Error: Incorrect instruction format!")  # Add error message
+        messagebox.showerror("Error", "Instruction  Not Found")
+ # Add error message
         return
 
     actives = []
@@ -111,16 +142,97 @@ def jumbalOr(instruction):
     Multi_cycle(canvas, window,actives)
 def jumbregOr(instruction):
     if len(instruction) != 2:
-        print("Error: Incorrect instruction format!")  # Add error message
+        messagebox.showerror("Error", "Instruction  Not Found")
+# Add error message
         return
 
     if(instruction[-1]not in Registers):
-                print("Error: Invalid register!")
+                messagebox.showerror("Error", "Instruction  Not Found")
+
                 return
     actives = []
     actives.append(fetch)
     actives.append(decode)
     actives.append(jumbreg)
+    print("Instruction:", instruction)
+    if(len(Line.Lines_lst)):
+        messagebox.showerror("Error", "There is an already cycle you do close it and try again")
+        print("invalid")
+        return
+    window = tk.Toplevel(globalVar.TKROOT)
+    window.title("Multi-Cycle Microprocessor Diagram")
+    window.geometry("1600x900")  # Window size
+    window.configure(bg="white") 
+    canvas = tk.Canvas(window, bg="white")
+    Multi_cycle(canvas, window,actives)
+def lwOr(instruction):
+    print(instruction[1],len(instruction))
+    if len(instruction) != 3 or instruction[1] not in Registers:
+        messagebox.showerror("Error", "Instruction  Not Found")
+  # Add error message
+        return
+
+    s = instruction[2]
+    num = ""
+    regg = ""
+    flag = 0
+    for i in s:
+         if(i != "("):
+              num+=i
+         else:
+            break
+         flag+=1
+    print(s[flag+1:-1])
+    if(num.isdecimal()==False or s[flag+1 :-1] not in Registers or s[-1] != ')'):
+        messagebox.showerror("Error", "Instruction  Not Found")
+
+        return
+       
+
+    actives = []
+    actives.append(fetch)
+    actives.append(decode)
+    actives.append(Lw1)
+    actives.append(Lw2)
+    print("Instruction:", instruction)
+    if(len(Line.Lines_lst)):
+        messagebox.showerror("Error", "There is an already cycle you do close it and try again")
+        print("invalid")
+        return
+    window = tk.Toplevel(globalVar.TKROOT)
+    window.title("Multi-Cycle Microprocessor Diagram")
+    window.geometry("1600x900")  # Window size
+    window.configure(bg="white") 
+    canvas = tk.Canvas(window, bg="white")
+    Multi_cycle(canvas, window,actives)
+def SwOr(instruction):
+    print(instruction[1],len(instruction))
+    if len(instruction) != 3 or instruction[1] not in Registers:
+        messagebox.showerror("Error", "Instruction  Not Found")
+
+        return
+
+    s = instruction[2]
+    num = ""
+    regg = ""
+    flag = 0
+    for i in s:
+         if(i != "("):
+              num+=i
+         else:
+            break
+         flag+=1
+    print(s[flag+1:-1])
+    if(num.isdecimal()==False or s[flag+1 :-1] not in Registers or s[-1] != ')'):
+        messagebox.showerror("Error", "Instruction  Not Found")
+
+        return
+       
+
+    actives = []
+    actives.append(fetch)
+    actives.append(decode)
+    actives.append(sw)
     print("Instruction:", instruction)
     if(len(Line.Lines_lst)):
         messagebox.showerror("Error", "There is an already cycle you do close it and try again")
@@ -139,7 +251,9 @@ code_methods = {
     ("beq","bneq","bge","blt","bgt"): lambda *args:conditionsOr(*args),
     "j":lambda *args:jumbOr(*args),
     "jal":lambda *args:jumbalOr(*args),
-    "jr":lambda *args:jumbregOr(*args)
+    "jr":lambda *args:jumbregOr(*args),
+    ("lw","lb"):lambda *args:lwOr(*args),
+    ("sw","sb"):lambda *args:SwOr(*args),
 }
 
 def check_code(instruction):
@@ -152,4 +266,4 @@ def check_code(instruction):
             code_methods[x](instruction)
             break
     else:
-        print("Error: Instruction not recognized!")
+        messagebox.showerror("Error", "Instruction  Not Found")

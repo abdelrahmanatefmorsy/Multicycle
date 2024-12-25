@@ -77,27 +77,9 @@ class ALU:
             canvas.create_text(
                 x_center, y_center, text=text, font=("Arial", 10)
             )
-class ANDGate:
-    def __init__(self, canvas, x, y):
-        self.canvas = canvas
-        self.x = x
-        self.y = y
-        self.draw_gate()
-
-    def draw_gate(self):
-        self.canvas.create_rectangle(
-            self.x, self.y, self.x + 100, self.y + 100,
-            outline="black", width=2
-        )
-
-        self.canvas.create_arc(
-            self.x + 50, self.y, self.x + 150, self.y + 100,
-            start=270, extent=180, outline="black", width=2, style=tk.ARC
-        )
-        self.canvas.create_text(self.x + 40, self.y + 50, text="AND", font=("Arial", 10))
 def on_line_click():
     print("Line clicked!")
-Fetch = [7,2,3,1,0,6,58,61,83]
+Fetch = [84, 84, 90, 91, 99, 99, 27, 68, 12, 13]
 Decode = [4,2,1]
 R_type1 = [5,6,10]
 R_type2 = [9,10,11]
@@ -141,12 +123,12 @@ def i_type2():
         j.reactive()
     for i in I_type_2:
         Line.Lines_lst[i].make_active()
-def lw1():
+def Lw1():
     for j in Line.Lines_lst:
         j.reactive()
     for i in lw1:
         Line.Lines_lst[i].make_active()
-def lw2():
+def Lw2():
     for j in Line.Lines_lst:
         j.reactive()
     for i in lw2:
@@ -156,7 +138,7 @@ def sw():
         j.reactive()
     for i in Sw:
         Line.Lines_lst[i].make_active()
-def BRQ():
+def BEQ():
     for j in Line.Lines_lst:
         j.reactive()
     for i in Beq:
