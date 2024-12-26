@@ -100,10 +100,6 @@ def jumbOr(instruction):
   # Add error message
         return
 
-    if(instruction[-1].isdecimal()==False):
-        messagebox.showerror("Error", "Instruction  Not Found")
-
-        return
     actives = []
     actives.append(fetch)
     actives.append(decode)
