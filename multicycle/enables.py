@@ -137,9 +137,9 @@ def Multi_cycle(canvas,window,actives):
 
     MUX(canvas, center=[x_offset + 990, y_offset + 285], radius=8, text="4")
     Line(canvas, [x_offset + 1000, y_offset + 285], [x_offset + 1038, y_offset + 285])
-    Line(canvas, [x_offset + 973, y_offset + 150], [x_offset + 1000, y_offset + 150],color="black")
+    Line(canvas, [x_offset + 973, y_offset + 150], [x_offset + 1006, y_offset + 150])
     MUX(canvas, center=[x_offset + 1008, y_offset + 150], radius=5, text="",fill_color="black",outline_color="black")
-    Line(canvas, [x_offset + 993, y_offset + 150], [x_offset + 1050, y_offset + 150])
+    Line(canvas, [x_offset + 1010, y_offset + 150], [x_offset + 1050, y_offset + 150])
     MUX(canvas, center=[x_offset + 1050, y_offset + 140], radius=30, text="0 \n1",fill_color="#d9e7fb",outline_color="#6b8ebe")
     Line(canvas, [x_offset + 1080, y_offset + 140], [x_offset + 1100, y_offset + 140])
     Line(canvas, [x_offset + 1080, y_offset + 310], [x_offset + 1100, y_offset + 310])
