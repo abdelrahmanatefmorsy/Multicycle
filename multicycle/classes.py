@@ -91,85 +91,99 @@ class ALU:
 
 def on_line_click():
     print("Line clicked!")
-Fetch = [71, 0, 6, 7, 101, 101, 7, 8, 55, 58, 59, 59, 61, 80, 63, 82, 82, 83, 83, 84, 84, 84, 85, 85, 85, 9,81,1,15,16,17,73,86]
-Decode = [8, 39, 7, 28, 29, 61, 6, 37, 9,  27, 25, 24, 59,58,49,50,34,35]
-R_type1 = [52, 54, 51,  58, 59, 56, 53, 61,50,49,57]
-R_type2 = [44,43,60,23,22,14,65,46,21,70]
-I_type = [49,51,57,56,58,24,25,30,31,32,33,59,61]
-I_type_2 = [60,42,41,37,22,14,65]
-lw1 = [63,64,13,12,10,15,65,14,11,10]
-lw2 = [17,18,19,20,41,42,46,70,37,60]
-Sw = [13,12,52,53,69,68,67,66,14,10,11,15,63,64,65]
-Beq = [51,57,58,56,61, 62, 59, 52, 53, 54, 74, 63, 65, 76, 77, 78,75,79,64 ,83 ,84 ,85 , 86, 82, 71,72,73, 379,378]
-J =[91, 89, 88, 82, 83, 84, 86, 73,90,92,34,85,71]
-Jal =  [34, 92, 91, 89, 73, 0, 2, 4, 5, 70, 47, 48,88,90,3,46,82,83,84,85,86,71,34]
-Jr =[51, 56, 96, 95, 94, 93, 82, 83, 84 ,85,86,73,71]
+Fetch = {71, 0, 6, 7, 101, 101, 7, 8, 55, 58, 59, 59, 61, 80, 63, 82, 82, 83, 83, 84, 84, 84, 85, 85, 85, 9,81,1,15,16,17,73,86}
+Decode = {8, 39, 7, 28, 29, 61, 6, 37, 9,  27, 25, 24, 59,58,49,50,34,35}
+R_type1 = {52, 54, 51,  58, 59, 56, 53, 61,50,49,57}
+R_type2 = {44,43,60,23,22,14,65,46,21,70}
+I_type = {49,51,57,56,58,24,25,30,31,32,33,59,61}
+I_type_2 =[60,42,41,37,22,14,65,181,125,123,172,148,23,21,46,70,23,22,22,21,46,60]
+
+lw1 = {63,64,13,12,10,15,65,14,11,10}
+lw2 = {17,18,19,20,41,42,46,70,37,60}
+Sw = {13,12,52,53,69,68,67,66,14,10,11,15,63,64,65}
+Beq ={51,57,58,56,61, 62, 59, 52, 53, 54, 74, 63, 65, 76, 77, 78,75,79,64 ,83 ,84 ,85 , 86, 82, 71,72,73, 379,378}
+J ={91, 89, 88, 82, 83, 84, 86, 73,90,92,34,85,71}
+Jal =  {34, 92, 91, 89, 73, 0, 2, 4, 5, 70, 47, 48,88,90,3,46,82,83,84,85,86,71,34}
+Jr ={51, 56, 96, 95, 94, 93, 82, 83, 84 ,85,86,73,71}
 
 def fetch():
     for j in Line.Lines_lst:
         j.reactive()
     for i in Fetch:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def decode():
     for j in Line.Lines_lst:
         j.reactive()
     for i in Decode:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def r_type1():
     for j in Line.Lines_lst:
         j.reactive()
     for i in R_type1:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def r_type2():
     for j in Line.Lines_lst:
         j.reactive()
     for i in R_type2:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def i_type1():
     for j in Line.Lines_lst:
         j.reactive()
     for i in I_type:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def i_type2():
     for j in Line.Lines_lst:
         j.reactive()
     for i in I_type_2:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def Lw1():
     for j in Line.Lines_lst:
         j.reactive()
     for i in lw1:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def Lw2():
     for j in Line.Lines_lst:
         j.reactive()
     for i in lw2:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def sw():
     for j in Line.Lines_lst:
         j.reactive()
     for i in Sw:
-        Line.Lines_lst[i].make_active()
+         if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def BEQ():
     for j in Line.Lines_lst:
         j.reactive()
     for i in Beq:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def jumb():
     for j in Line.Lines_lst:
         j.reactive()
     for i in J:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def jumbreg():
     for j in Line.Lines_lst:
         j.reactive()
     for i in Jr:
-        Line.Lines_lst[i].make_active()
+        if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 def jumbal():
     for j in Line.Lines_lst:
         j.reactive()
     for i in Jal:
-        Line.Lines_lst[i].make_active()
+          if(i <len(Line.Lines_lst)):
+            Line.Lines_lst[i].make_active()
 
 Registers = [
     "$zero",
