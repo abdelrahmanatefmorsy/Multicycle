@@ -33,6 +33,7 @@ class Line:
         Line.count+=1
         Line.Lines_lst.append(self)
         self.canvas = canvas
+        self.main_color = color
         self.line = canvas.create_line(
             pos1[0], pos1[1], pos2[0], pos2[1],
             fill=color, width=width
@@ -48,7 +49,7 @@ class Line:
         new_color = "#7CFC00"
         self.canvas.itemconfig(self.line, fill=new_color)  
     def reactive(self):
-        new_color = "black"
+        new_color = self.main_color
         self.canvas.itemconfig(self.line, fill=new_color)  
 
 class Rectangle:
