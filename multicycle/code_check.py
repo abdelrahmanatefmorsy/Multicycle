@@ -8,9 +8,9 @@ window = None
 instructions = ["add","sub","or","and","sll","srl","addi","subi","ori","andi","j","jal","jal","jr","swap","beq","bneq","bge","xor","xori","blt","bgt","ble","bge"]
 def R_typeOr(instruction):
     print("hello")
+    print(instruction)
     if len(instruction) != 4:
         messagebox.showerror("Error", "Instruction  Not Found")
-  # Add error message
         return
     
     for i in range(1, len(instruction)):
@@ -40,7 +40,6 @@ def I_typeOr(instruction):
     print("hello")
     if len(instruction) != 4:
         messagebox.showerror("Error", "Instruction  Not Found")
- # Add error message
         return
     
     for i in range(1, len(instruction) - 1):
@@ -49,6 +48,7 @@ def I_typeOr(instruction):
 
             return
     if(instruction[-1].isdecimal()==False):
+            print(instruction[-1])
             messagebox.showerror("Error", "Instruction  Not Found")
             return
     actives = []
@@ -253,10 +253,12 @@ code_methods = {
 }
 
 def check_code(instruction):
+    instruction = instruction.replace('\xa0', ' ')
     instruction = re.split(r'[ ,]+', instruction)
-
+    print(instruction)
     # Iterate through code_methods and invoke the appropriate function
     for x in code_methods:
+        print(instruction[0],x)
         if instruction[0] in x:
             # Pass the instruction and canvas explicitly
             code_methods[x](instruction)

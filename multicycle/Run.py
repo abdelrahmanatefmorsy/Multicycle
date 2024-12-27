@@ -4,63 +4,88 @@ Labels = {}
 tmp = {}
 import globalVar
 from tkinter import messagebox
-    
+from classes import mn_element , mx_element 
+import re
 def add(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z not in globalVar.register_vars:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1)) 
         return 0
-    print(x,y,z)
+    if int(tmp[y]) + int(tmp[z]) > mx_element or int(tmp[y]) + int(tmp[z]) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
+        return 0
     tmp[x]  = str(int(tmp[y]) + int(tmp[z]))
     return 1
 def sub(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z not in globalVar.register_vars:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
+        return 0
+    if int(tmp[y]) - int(tmp[z]) > mx_element or int(tmp[y]) - int(tmp[z]) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) - int(tmp[z]))
     return 1
 def orr(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z not in globalVar.register_vars:  
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) | int(tmp[z]))
     return 1
 def andd(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z not in globalVar.register_vars:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) & int(tmp[z]))
 def sll(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z.isdecimal() == False:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
+        return 0
+    if int(tmp[y]) << int(z) > mx_element or int(tmp[y]) << int(z) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) << int(z))
     return 1
 def srl(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z.isdecimal() == False:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
+        return 0
+    if int(tmp[y]) >> int(z) > mx_element or int(tmp[y]) >> int(z) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) >> int(z))
+    return 1
 def addi(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z.isdecimal() == False:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
+        return 0
+    if int(tmp[y]) + int(z) > mx_element or int(tmp[y]) + int(z) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) + int(z))
     return 1
 def subi(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z.isdecimal() == False:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
+        return 0
+    if int(tmp[y]) - int(z) > mx_element or int(tmp[y]) - int(z) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) - int(z))
     return 1
 def ori(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z.isdecimal() == False:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
+        return 0
+    if int(tmp[y]) | int(z) > mx_element or int(tmp[y]) | int(z) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) | int(z))
     return 1
 def andi(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z.isdecimal() == False:
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
+        return 0
+    if int(tmp[y]) & int(z) > mx_element or int(tmp[y]) & int(z) < mn_element:
+        messagebox.showerror("Error", "Overflow Error in Line {0}".format(Line+1))
         return 0
     tmp[x] = str(int(tmp[y]) & int(z))
     return 1
@@ -69,7 +94,7 @@ def j(x):
     global Labels
     global Line
     if x not in Labels:
-        print("Invalid label")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
         return 0
     Line = Labels[x]
     return 1
@@ -79,7 +104,7 @@ def beq(x,y,z):
 
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z not in Labels:
         print(x,y,z)
-        print("Invalid register")
+        messagebox.showerror("Error", "syntax Error in Line {0}".format(Line+1))
         return 0
     if tmp[x] == tmp[y]:
         Line = Labels[z]
@@ -138,11 +163,17 @@ def xorr(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z not in globalVar.register_vars:
         print("Invalid register")
         return 0
+    if int(tmp[y]) ^ int(tmp[z]) > mx_element or int(tmp[y]) ^ int(tmp[z]) < mn_element:
+        print("Overflow Error")
+        return 0
     tmp[x] = str(int(tmp[y]) ^ int(tmp[z]))
     return 1
 def xori(x,y,z):
     if x not in globalVar.register_vars or y not in globalVar.register_vars or z.isdecimal() == False:
         print("Invalid register")
+        return 0
+    if int(tmp[y]) ^ int(z) > mx_element or int(tmp[y]) ^ int(z) < mn_element:
+        print("Overflow Error")
         return 0
     tmp[x] = str(int(tmp[y]) ^ int(z))
 ops = {
@@ -167,26 +198,25 @@ ops = {
     "bge": lambda x, y,z: bge(x, y,z)
 }
 def check_code(code):
-    code = code.split()
     if code[0][-1]==':':
         return 1
     if code[0] not in ops and code[0][-1] != ':':
         print(code[0])
-        print("Invalid instruction")
+        messagebox.showerror("Error", "Instruction  Not Found in Line {0}".format(Line+1))
         return 0
     if code[0][-1] == ':':
         if len(code) != 1:
-            print("Invalid label")
+            messagebox.showerror("Error", "Invalid label in Line {0}".format(Line+1))
             return 0
         Labels[code[0][:-1]] = Line
         return 1
     param_count = len(inspect.signature(ops[code[0]]).parameters)
     if(len(code) != param_count + 1):
+        print(code)
         print(param_count,len(code))
-        print("syntax error")
+        messagebox.showerror("Error", "Invalid number of arguments in Line {0}".format(Line+1))
         return 0
-    ops[code[0]](*code[1:])
-    return 1
+    return ops[code[0]](*code[1:])
 def run_code(code):
     global Line
     Line  = 0
@@ -197,21 +227,23 @@ def run_code(code):
         # print(i,tmp[i])
     code = list(code.split('\n'))
     for i in range(len(code)):
-            x = code[i].split()
+            x = code[i].replace('\xa0', ' ').strip()
+            x = re.split(r'[ ,\n]+', x)
+            print(x)
             if x[0][-1] == ':':
                 if len(x) != 1:
-                    print("Invalid label")
+                    messagebox.showerror("Error", "Invalid label in Line {0}".format(Line+1))
                     return 0
                 Labels[x[0][:-1]] = i
     while Line < len(code):
-        if not check_code(code[Line]):
-            break
+        x = code[Line].replace('\xa0', ' ').strip()
+        x = re.split(r'[ ,\n]+', x)
+        if not check_code(x):
+            return
         Line += 1
     for i in globalVar.register_vars:
         globalVar.register_vars[i].set(str(tmp[i]))
     messagebox.showinfo("Successful", "Code Run completed successfully")
-    # for i in globalVar.register_vars:
-    #     print(globalVar.register_vars[i].get())
 
 
 # Example usage

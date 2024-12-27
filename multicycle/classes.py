@@ -1,6 +1,30 @@
 from functools import partial
 import tkinter as tk
-global root 
+global root
+mx_element = 2 ** 31 - 1
+mn_element = -2 ** 31
+class TextWithLineNumbers(tk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self.text = tk.Text(self, height=17, width=40, font=("Arial", 14))
+        self.text.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
+        self.line_numbers = tk.Canvas(self, width=30, bg="#dcdcdc")
+        self.line_numbers.pack(side=tk.LEFT, fill=tk.Y)
+        self.text.bind("<KeyRelease>", self.update_line_numbers)
+        self.update_line_numbers()
+
+    def update_line_numbers(self, event=None):
+        self.line_numbers.delete("all")
+        i = self.text.index("@0,0")
+        while True:
+            dline = self.text.dlineinfo(i)
+            if dline is None:
+                break
+            y = dline[1]
+            linenum = str(i).split(".")[0]
+            self.line_numbers.create_text(2, y, anchor="nw", text=linenum, font=("Arial", 14))
+            i = self.text.index(f"{i}+1line")
+
 class Line:
     count = 0
     Lines_lst = []
@@ -13,7 +37,6 @@ class Line:
             pos1[0], pos1[1], pos2[0], pos2[1],
             fill=color, width=width
         )
-        # Bind the line to an event
         self.canvas.tag_bind(self.line, "<Button-1>", self.on_click)
 
     def on_click(self, event):
@@ -21,21 +44,13 @@ class Line:
 
     
     def make_active(self):
-        # Get the current color of the line
-        
-        # Toggle the color
-        new_color = "#00ff00"
+
+        new_color = "#7CFC00"
         self.canvas.itemconfig(self.line, fill=new_color)  
     def reactive(self):
-        # Get the current color of the line
-        
-        # Toggle the color
         new_color = "black"
         self.canvas.itemconfig(self.line, fill=new_color)  
 
-# Example function that takes an integer parameter
-def on_line_click(arg):
-        print(f"Line clicked with argument: {arg}")
 class Rectangle:
     def __init__(self, canvas, pos1, pos2, text="", bg_color="white", outline_color="black"):
         self.rectangle = canvas.create_rectangle(
@@ -48,13 +63,11 @@ class Rectangle:
                 text=text, font=("Arial", 10)
             )
 
-# تعريف الـ Multiplexer (MUX) كدائرة
 class MUX:
     def __init__(self, canvas, center, radius, text="", fill_color="white", outline_color="black",radz = 8):
         x, y = center
-        # تعديل لعمل شكل بيضاوي بدل دائرة
-        radius_x = radius  # العرض الأفقي (يمكنك تعديله)
-        radius_y = radius # الارتفاع الرأسي (يمكنك تعديله)
+        radius_x = radius  
+        radius_y = radius 
         
         self.mux = canvas.create_oval(
             x - radius_x, y - radius_y, x + radius_x, y + radius_y,
@@ -64,19 +77,18 @@ class MUX:
             canvas.create_text(
                 x, y, text=text, font=("Arial", 10)
             )
-# تعريف وحدة ALU كمثلث
 class ALU:
     def __init__(self, canvas, points, text="", fill_color="white", outline_color="black"):
         self.alu = canvas.create_polygon(
             points, fill=fill_color, outline=outline_color, width=2
         )
         if text:
-            # حساب مركز المثلث لوضع النص
             x_center = sum(p[0] for p in points) / len(points)
             y_center = sum(p[1] for p in points) / len(points)
             canvas.create_text(
                 x_center, y_center, text=text, font=("Arial", 10)
             )
+
 def on_line_click():
     print("Line clicked!")
 Fetch = [71, 0, 6, 7, 101, 101, 7, 8, 55, 58, 59, 59, 61, 80, 63, 82, 82, 83, 83, 84, 84, 84, 85, 85, 85, 9,81,1,15,16,17,73,86]

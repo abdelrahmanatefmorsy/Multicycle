@@ -6,20 +6,14 @@ def Multi_cycle(canvas,window,actives):
         window.attributes('-fullscreen', not current_state)
     window.attributes('-fullscreen', True)
     window.bind("<Escape>", toggle_fullscreen)
-    # Function to draw a grid on the canvas
     def draw_grid(canvas, width, height, grid_size=20, color="#e0e0e0"):
         for x in range(0, width, grid_size):
             canvas.create_line(x, 0, x, height, fill=color)
         for y in range(0, height, grid_size):
             canvas.create_line(0, y, width, y, fill=color)
 
-    # Initialize the Tkinter window
-
-    # Create a canvas and pack it
     canvas = tk.Canvas(window, bg="white")
     canvas.pack(fill=tk.BOTH, expand=True)
-
-    # Draw the grid
     canvas_width = 1600
     canvas_height = 900
     draw_grid(canvas, canvas_width, canvas_height, grid_size=20)
@@ -30,13 +24,10 @@ def Multi_cycle(canvas,window,actives):
     Line(canvas, [x_offset + 150, y_offset + 150], [x_offset + 175, y_offset + 150],color="black")
     MUX(canvas, center=[x_offset + 175, y_offset + 150], radius=5, text="",fill_color="black")
     Line(canvas, [x_offset + 180, y_offset + 150], [x_offset + 200, y_offset + 150],color="black")
-
-
     Line(canvas, [x_offset + 175, y_offset + 150], [x_offset + 175, y_offset + 550])
     Line(canvas, [x_offset + 175, y_offset + 550], [x_offset + 650, y_offset + 550])
     Line(canvas, [x_offset + 650, y_offset + 550], [x_offset + 650, y_offset + 350])
     Line(canvas, [x_offset + 650, y_offset + 350], [x_offset + 680, y_offset + 350])
-
     Line(canvas, [x_offset + 175, y_offset + 150], [x_offset + 175, y_offset + 30])
     Line(canvas, [x_offset + 175, y_offset + 30], [x_offset + 990, y_offset + 30])
     Line(canvas, [x_offset + 990, y_offset + 30], [x_offset + 990, y_offset + 130])
@@ -45,14 +36,11 @@ def Multi_cycle(canvas,window,actives):
     Line(canvas, [x_offset + 190, y_offset + 170], [x_offset + 190, y_offset+ 650])
     Line(canvas, [x_offset + 190, y_offset + 170], [x_offset + 220, y_offset+ 170])
     Line(canvas, [x_offset + 190, y_offset+ 650], [x_offset + 1500, y_offset+ 650])
-    # Line(canvas, [x_offset + 1500, y_offset+ 650], [x_offset + 1500, y_offset+ 230],color="red")
-
     Line(canvas, [x_offset + 1500, y_offset+ 430], [x_offset + 1500, y_offset+650] ,color="black")
     Line(canvas, [x_offset + 1500, y_offset+ 430], [x_offset + 1500, y_offset+ 230],color="black")
-    # IorD Multiplexer (كدائرة)
+    # IorD Multiplexer
     IorD = MUX(canvas, center=[x_offset + 225, y_offset + 160], radius=27, text= "0 \n1" ,fill_color="#d9e7fb",outline_color="#6b8ebe")
     Rectangle(canvas, [x_offset + 220, y_offset + 120], [x_offset + 240, y_offset + 130], text="I or D",bg_color="white", outline_color="white")
-
     Line(canvas, [x_offset + 250, y_offset + 150], [x_offset + 300, y_offset + 150])
     # Memory
     memory = Rectangle(canvas, [x_offset + 300, y_offset + 100], [x_offset + 400, y_offset + 500], text="Address\n\n\n\n\n\n\n\n\n\n Memory \n\n\n\n\n\n\n\n\nwrite data")
@@ -147,11 +135,11 @@ def Multi_cycle(canvas,window,actives):
     Rectangle(canvas, [x_offset + 780, y_offset+ 80], [x_offset + 820, y_offset+ 70], text="RG WR",bg_color="white", outline_color="white")
     Line(canvas, [x_offset + 800, y_offset + 100], [x_offset + 800, y_offset + 84],color="black")
     sign_extend
-    # # ALU (كمثلث)
+    
     alu_points = [
-        [x_offset + 1100, y_offset + 100],  # النقطة العلوية
-        [x_offset + 1200, y_offset + 230],  # النقطة اليمنى
-        [x_offset + 1100, y_offset + 320],  # النقطة السفلية
+        [x_offset + 1100, y_offset + 100],  # top point
+        [x_offset + 1200, y_offset + 230],  # middle point
+        [x_offset + 1100, y_offset + 320],  # bottom point
     ]
     alu = ALU(canvas, alu_points, text="ALU")
     Line(canvas, [x_offset + 1170, y_offset + 260], [x_offset + 1170, y_offset + 320])
@@ -167,10 +155,6 @@ def Multi_cycle(canvas,window,actives):
     Rectangle(canvas, [x_offset +1340, y_offset + 220], [x_offset + 1450, y_offset + 250], text="ALU Temp",bg_color="#ffe6cc", outline_color="#e9cc83")
     Line(canvas, [x_offset + 1450, y_offset + 230], [x_offset + 1500, y_offset + 230])
     MUX(canvas, center=[x_offset + 1500, y_offset + 230], radius=4, text="",fill_color="black",outline_color="black")
-    # Line(canvas, [x_offset + 1450, y_offset + 230], [x_offset + 1500, y_offset + 230])
-    # Line(canvas, [x_offset + 1500, y_offset + 230], [x_offset + 1500, y_offset + 120])
-    # Line(canvas, [x_offset + 1500, y_offset + 120], [x_offset + 1410, y_offset + 120])
-    # Line(canvas, [x_offset + 1410, y_offset + 120], [x_offset + 1410, y_offset + 81])
     Line(canvas, [x_offset + 300, y_offset + 450], [x_offset +220, y_offset + 450])
     Line(canvas, [x_offset +220, y_offset + 450], [x_offset +220, y_offset + 600])
     Line(canvas, [x_offset +220, y_offset + 600], [x_offset + 990, y_offset + 600])
@@ -194,7 +178,6 @@ def Multi_cycle(canvas,window,actives):
 
 
 
-    # basmala
     Line(canvas, [x_offset + 1500, y_offset + 230], [x_offset + 1500, y_offset + 160])
     Line(canvas, [x_offset + 1500, y_offset + 160], [x_offset + 1410, y_offset + 160])
     Line(canvas, [x_offset + 1410, y_offset + 160], [x_offset + 1410, y_offset + 81])
@@ -210,7 +193,6 @@ def Multi_cycle(canvas,window,actives):
     Line(canvas, [x_offset + 30, y_offset +-8], [x_offset + 30, y_offset + 150])
     Line(canvas, [x_offset + 30, y_offset +150], [x_offset + 50, y_offset + 150])
 
-    # new basmala
     Rectangle(canvas, [x_offset + 1460, y_offset + 50], [x_offset + 1480, y_offset + 40], text="PC-SRC",bg_color="white", outline_color="white")
     Line(canvas, [ x_offset + 1430, y_offset +98], [x_offset +1180, y_offset + 98])
     Line(canvas, [ x_offset + 1430, y_offset +98], [x_offset +1180, y_offset + 98])
@@ -250,14 +232,10 @@ def Multi_cycle(canvas,window,actives):
     Rectangle(canvas, [ x_offset+620,y_offset + 180], [x_offset + 640, y_offset + 160], text="Rt",bg_color="#FFA500")
     Rectangle(canvas, [ x_offset+620,y_offset + 200], [x_offset + 640, y_offset + 220], text="Rd",bg_color="blue")
     for i, func in enumerate(actives):
-        # Use lambda to bind the function properly by capturing func in each iteration
-        btn = tk.Button(canvas, text=f"cycle {i+1}", command=lambda f=func: f(), bg="#d5e7d4")
-        
-        # Place the button in the top-right corner, adjusting y for vertical stacking with space
+        btn = tk.Button(canvas, text=f"cycle {i+1}", command=lambda f=func: f(), bg="#d5e7d4")        
         btn.place(x=window.winfo_screenwidth() - 150, y=10 + i * 50)
     def on_close():
         Line.Lines_lst.clear()
         window.destroy()
 
-    # Bind the close button to a custom function
     window.protocol("WM_DELETE_WINDOW", on_close)
