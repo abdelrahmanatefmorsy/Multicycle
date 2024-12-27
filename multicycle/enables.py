@@ -171,7 +171,7 @@ def Multi_cycle(canvas,window,actives):
     #and
     Rectangle(canvas, [x_offset +80, y_offset + 350], [x_offset + 160, y_offset + 380], text="AND Gate",bg_color="white", outline_color="black")
     Line(canvas, [x_offset + 140, y_offset + 380], [x_offset + 140, y_offset + 450])
-    Rectangle(canvas, [x_offset + 130, y_offset + 430], [x_offset + 150, y_offset +470], text="PC COUNT ",bg_color="white", outline_color="white")
+    Rectangle(canvas, [x_offset + 130, y_offset + 430], [x_offset + 150, y_offset +470], text="PC WR",bg_color="white", outline_color="white")
     Line(canvas, [x_offset + 90, y_offset + 380], [x_offset + 90, y_offset + 450])
     Rectangle(canvas, [x_offset + 80, y_offset + 410], [x_offset + 90, y_offset +480], text="Z",bg_color="white", outline_color="white")
     Rectangle(canvas, [x_offset + 60, y_offset + 330], [x_offset + 100, y_offset +300], text="PC COUNT ",bg_color="white", outline_color="white")
