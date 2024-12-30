@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from classes import *
 from globalVar import *
 def Multi_cycle(canvas,window,actives):

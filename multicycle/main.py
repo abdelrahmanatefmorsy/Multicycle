@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import tkinter as tk
 from classes import *
 from code_check import *
