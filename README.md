@@ -47,7 +47,7 @@ in the compiler part can compile same instructions except lw , sw , jr , jal
 bash
 
   ```
-git clone https://github.com/abdelrahmanatefmorsy/Multicycle/tree/main/multicycle
+git clone https://github.com/abdelrahmanatefmorsy/Multicycle/
   ```
 
 ## How to Compile and Run
