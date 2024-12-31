@@ -16,6 +16,28 @@ Dynamic Entry System: Users can add new entries and simulate different assembly 
 Code Editor: A text editor with line numbers where users can input assembly code.
 Cycle Simulation: Simulates the execution of assembly instructions and updates the register values accordingly.
 Reset: Allows users to reset the register values to their initial state.
+The program allows simulation for the following assembly instructions:  
+
+- **Arithmetic Operations**:  
+  - `add`, `sub`, `addi`, `subi`  
+
+- **Logical Operations**:  
+  - `and`, `or`, `xor`, `andi`, `ori`, `xori`  
+
+- **Shift Operations**:  
+  - `sll` (Shift Left Logical), `srl` (Shift Right Logical)  
+
+- **Branch Operations**:  
+  - `beq` (Branch if Equal), `bneq` (Branch if Not Equal), `bge` (Branch if Greater or Equal), `blt` (Branch if Less Than), `bgt` (Branch if Greater Than)  
+
+- **Jump Operations**:  
+  - `j` (Jump), `jal` (Jump and Link), `jr` (Jump Register)  
+
+- **Memory Operations**:  
+  - `lw` (Load Word), `sw` (Store Word)  
+
+---
+in the compiler part can compile same instructions except lw , sw , jr , jal
 
 ## How to Clone the Repository
 
