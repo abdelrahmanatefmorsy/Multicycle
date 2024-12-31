@@ -5,6 +5,7 @@ from code_check import *
 import globalVar
 import re
 from Run import run_code
+# make window and frames
 root = tk.Tk()
 globalVar.TKROOT = root
 root.title("TEAM")

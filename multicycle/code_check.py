@@ -77,7 +77,9 @@ def conditionsOr(instruction):
     for i in range(1, len(instruction) - 1):
         if instruction[i] not in Registers:
             messagebox.showerror("Error", "Instruction  Not Found")
-
+            return
+        if(instruction[-1].isdecimal()==True):
+            messagebox.showerror("Error", "Instruction  Not Found")
             return
     actives = []
     actives.append(fetch)
@@ -165,9 +167,7 @@ def lwOr(instruction):
     print(instruction[1],len(instruction))
     if len(instruction) != 3 or instruction[1] not in Registers:
         messagebox.showerror("Error", "Instruction  Not Found")
-  # Add error message
         return
-
     s = instruction[2]
     num = ""
     regg = ""
@@ -181,13 +181,13 @@ def lwOr(instruction):
     print(s[flag+1:-1])
     if(num.isdecimal()==False or s[flag+1 :-1] not in Registers or s[-1] != ')'):
         messagebox.showerror("Error", "Instruction  Not Found")
-
         return
        
 
     actives = []
     actives.append(fetch)
     actives.append(decode)
+    actives.append(i_type1)
     actives.append(Lw1)
     actives.append(Lw2)
     print("Instruction:", instruction)
@@ -228,6 +228,7 @@ def SwOr(instruction):
     actives = []
     actives.append(fetch)
     actives.append(decode)
+    actives.append(i_type1)
     actives.append(sw)
     print("Instruction:", instruction)
     if(len(Line.Lines_lst)):

@@ -172,10 +172,10 @@ def Multi_cycle(canvas,window,actives):
     #and
     Rectangle(canvas, [x_offset +80, y_offset + 350], [x_offset + 160, y_offset + 380], text="AND Gate",bg_color="white", outline_color="black")
     Line(canvas, [x_offset + 140, y_offset + 380], [x_offset + 140, y_offset + 450])
-    Rectangle(canvas, [x_offset + 130, y_offset + 430], [x_offset + 150, y_offset +470], text="PC WR",bg_color="white", outline_color="white")
+    Rectangle(canvas, [x_offset + 130, y_offset + 430], [x_offset + 150, y_offset +470], text="PC COND",bg_color="white", outline_color="white")
     Line(canvas, [x_offset + 90, y_offset + 380], [x_offset + 90, y_offset + 450])
     Rectangle(canvas, [x_offset + 80, y_offset + 410], [x_offset + 90, y_offset +480], text="Z",bg_color="white", outline_color="white")
-    Rectangle(canvas, [x_offset + 60, y_offset + 330], [x_offset + 100, y_offset +300], text="PC COUNT ",bg_color="white", outline_color="white")
+    Rectangle(canvas, [x_offset + 60, y_offset + 330], [x_offset + 100, y_offset +300], text="PC WR",bg_color="white", outline_color="white")
 
 
 
@@ -232,6 +232,10 @@ def Multi_cycle(canvas,window,actives):
     Rectangle(canvas, [ x_offset+680,y_offset + 140], [x_offset + 730, y_offset + 130], text="Rs",bg_color="red")
     Rectangle(canvas, [ x_offset+620,y_offset + 180], [x_offset + 640, y_offset + 160], text="Rt",bg_color="#FFA500")
     Rectangle(canvas, [ x_offset+620,y_offset + 200], [x_offset + 640, y_offset + 220], text="Rd",bg_color="blue")
+    Rectangle(canvas, [x_offset + 320, y_offset + 65], [x_offset + 300, y_offset + 65], text="memWrite",bg_color="white", outline_color="white")
+    Rectangle(canvas, [x_offset + 380, y_offset + 65], [x_offset + 400, y_offset + 65], text="memRead",bg_color="white", outline_color="white")
+    Line(canvas, [x_offset + 320, y_offset + 100], [x_offset + 320, y_offset + 75],color="black")
+    Line(canvas, [x_offset + 380, y_offset + 100], [x_offset + 380, y_offset + 75],color="black")
     for i, func in enumerate(actives):
         btn = tk.Button(canvas, text=f"cycle {i+1}", command=lambda f=func: f(), bg="#d5e7d4")        
         btn.place(x=window.winfo_screenwidth() - 150, y=10 + i * 50)
