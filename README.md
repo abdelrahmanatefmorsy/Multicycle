@@ -23,12 +23,21 @@ Reset: Allows users to reset the register values to their initial state.
 2. Run the following command to clone the repository:
 
 bash
-git clone https://github.com/abdelrahmanatefmorsy/Multicycle/tree/main/multicycle
 
+  ```
+git clone https://github.com/abdelrahmanatefmorsy/Multicycle/tree/main/multicycle
+  ```
 
 ## How to Compile and Run
 
+Install Python then Run this command to install tkinter library
 
+bash
+
+  ```
+  pip install tkinter
+  ```
+then Run main.py file
 
 ## Usage
 1. Register Table: The table shows a list of registers with their values. You can simulate changes to these values by executing assembly code.
